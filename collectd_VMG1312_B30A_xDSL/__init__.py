@@ -45,4 +45,4 @@ def callback_configure(config):
             collectd.warning('fritzcollectd: Unknown config %s' % node.key)
 
 
-#collectd.register_config(callback_configure)
+collectd.register_config(callback_configure)
