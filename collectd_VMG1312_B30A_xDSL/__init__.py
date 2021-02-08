@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 loginpath = "/login/login-page.cgi"
 dslpath = "/pages/systemMonitoring/xdslStatistics/xdslStatistics.html"
 xdslinfo = XdslInfo()
+params = {}
 
 
 def getXDSLStats(host, user, password):
@@ -29,3 +30,19 @@ def printDSLStats():
     print(xdslinfo)
 
 
+def callback_configure(config):
+    """ Configure callback """
+    for node in config.children:
+        if node.key == 'URL':
+            params['url'] = node.values[0]
+        elif node.key == 'User':
+            params['user'] = node.values[0]
+        elif node.key == 'Password':
+            params['password'] = node.values[0]
+        elif node.key == 'Verbose':
+            params['verbose'] = node.values[0]
+        else:
+            collectd.warning('fritzcollectd: Unknown config %s' % node.key)
+
+
+#collectd.register_config(callback_configure)
