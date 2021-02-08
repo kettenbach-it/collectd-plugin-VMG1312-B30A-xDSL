@@ -1,4 +1,7 @@
-import collectd
+try:
+    import collectd
+except:
+    pass
 import requests
 from xdslInfo import XdslInfo
 from bs4 import BeautifulSoup
@@ -45,4 +48,12 @@ def callback_configure(config):
             collectd.warning('fritzcollectd: Unknown config %s' % node.key)
 
 
-collectd.register_config(callback_configure)
+def read():
+    pass
+
+
+try:
+    collectd.register_config(callback_configure)
+    collectd.register_read(read)
+except:
+    pass
