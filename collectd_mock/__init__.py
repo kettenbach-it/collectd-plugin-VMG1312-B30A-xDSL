@@ -1,4 +1,4 @@
-__all__ = ("Values", )
+__all__ = ("Values",)
 
 
 class Data(object):
@@ -51,6 +51,7 @@ def mk_values(
         values=values,
     )
 
+
 Values = mk_values
 
 
@@ -76,6 +77,7 @@ def register_write(func):
 
 def info(msg):
     print(msg)
+
 
 def warning(msg):
     print(msg)
