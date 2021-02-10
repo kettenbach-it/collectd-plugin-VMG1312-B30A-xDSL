@@ -17,5 +17,11 @@ setup(
     project_urls={
         'Documentation': 'https://packaging.python.org/tutorials/distributing-packages',
         'Source': 'https://github.com/kettenbach-it/collectd-plugin-VMG1312-B30A-xDSL',
-    }
+    },
+    install_requires=[
+        "beautifulsoup4==4.9.3",
+        "lxml==4.6.2",
+        "requests"
+
+    ]
 )
