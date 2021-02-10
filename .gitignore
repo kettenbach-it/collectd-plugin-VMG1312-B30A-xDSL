@@ -76,4 +76,4 @@ venv
 VMG1312_xDSL/__pycache__
 test.py
 /collectd_plugin_VMG1312_xDSL.egg-info/
-/dist/collectd-plugin-VMG1312-xDSL-1.0.tar.gz
+/dist/
