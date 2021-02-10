@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 import re
 import datetime
 
-PLUGIN_NAME = 'VMG1312-B30A-xDSL'
+PLUGIN_NAME = 'VMG1312_xDSL'
 
 loginpath = "/login/login-page.cgi"
 dslpath = "/pages/systemMonitoring/xdslStatistics/xdslStatistics.html"
