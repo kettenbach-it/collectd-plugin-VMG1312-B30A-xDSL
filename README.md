@@ -39,7 +39,7 @@ LoadPlugin python
     Import "VMG1312_xDSL"
 
     <Module VMG1312_xDSL>
-        URL "http://yourmodem.yourdomain"
+        URL "http://<ip_of_your_modem>"
         User "admin"
         Password "1234"
     </Module>
