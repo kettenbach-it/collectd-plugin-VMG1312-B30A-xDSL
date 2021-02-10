@@ -334,7 +334,10 @@ def callback_configure(config):
     """ Configure callback """
     for node in config.children:
         if node.key == 'URL':
-            params['url'] = node.values[0]
+            if str(node.values[0]).endswith("/"):
+                params['url'] = str(node.values[0]).rstrip("/")
+            else:
+                params['url'] = node.values[0]
             log("Plugin %s configured to get %s." % (PLUGIN_NAME, params['url']))
         elif node.key == 'User':
             params['user'] = node.values[0]
@@ -719,7 +722,10 @@ if __name__ != "__main__":
     collectd.register_read(read)
 else:
     # outside plugin just collect the info
-    params['url'] = os.environ.get('URL')
+    if os.environ.get('URL').endswith("/"):
+        params['url'] = os.environ.get('URL').rstrip("/")
+    else:
+        params['url'] = os.environ.get('URL')
     params['user'] = os.environ.get('USER')
     params['password'] = os.environ.get('PASSWORD')
     read()

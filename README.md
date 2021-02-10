@@ -34,14 +34,11 @@ use in reading these.
 
 ## Configuration
 ```
-<LoadPlugin python> 
-    Globals true 
-</LoadPlugin> 
+LoadPlugin python 
 <Plugin python>
     Import "collectd-plugin-VMG1312-B30A-xDSL"
 
     <Module collectd-plugin-VMG1312-B30A-xDSL>
-        # URL must not end with a "/"!
         URL "http://yourmodem.yourdomain"
         User "admin"
         Password "1234"
