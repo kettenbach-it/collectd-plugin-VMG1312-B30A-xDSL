@@ -335,7 +335,7 @@ def callback_configure(config):
     for node in config.children:
         if node.key == 'URL':
             params['url'] = node.values[0]
-            log("Plugin %s configured to get " + params['url'] % PLUGIN_NAME)
+            log("Plugin %s configured to get %s." % (PLUGIN_NAME, params['url']))
         elif node.key == 'User':
             params['user'] = node.values[0]
         elif node.key == 'Password':
