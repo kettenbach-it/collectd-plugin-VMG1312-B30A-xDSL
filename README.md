@@ -22,7 +22,7 @@ probably be able to read all status parameters of the first three
 sections. The "VDSL Counters" section won't be a read - I don't see much
 use in reading these.
 
-![VMG1312-B30A-xDSL-page](VMG1312-B30A-xDSL-page.png)
+![VMG1312-B30A-xDSL-page](https://media.githubusercontent.com/media/kettenbach-it/collectd-plugin-VMG1312-B30A-xDSL/master/VMG1312-B30A-xDSL-page.png)
 
 ## Dependencies
 - collectd 4.9+
