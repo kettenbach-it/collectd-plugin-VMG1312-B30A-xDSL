@@ -28,7 +28,7 @@ use in reading these.
 - collectd 4.9+
 
 ## Installation
-1. pip install collectd-plugin-VMG1312-B30A-xDSL
+1. `pip3 install collectd-plugin-VMG1312-xDSL`
 2. Configure the plugin as shown below
 3. Restart collectd
 
@@ -36,9 +36,9 @@ use in reading these.
 ```
 LoadPlugin python 
 <Plugin python>
-    Import "collectd-plugin-VMG1312-B30A-xDSL"
+    Import "VMG1312_xDSL"
 
-    <Module collectd-plugin-VMG1312-B30A-xDSL>
+    <Module VMG1312_xDSL>
         URL "http://yourmodem.yourdomain"
         User "admin"
         Password "1234"
