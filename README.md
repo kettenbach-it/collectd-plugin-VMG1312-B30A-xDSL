@@ -50,5 +50,10 @@ LoadPlugin python
 ## License
 This project is licensed under the terms of the GPLv3 license.
 
+## Build
+`python setup.py sdist`
+
+`twine register dist/*`
+
 
 
