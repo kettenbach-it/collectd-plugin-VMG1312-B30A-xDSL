@@ -73,5 +73,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 venv
-collectd_VMG1312_B30A_xDSL/__pycache__
+VMG1312_xDSL/__pycache__
 test.py

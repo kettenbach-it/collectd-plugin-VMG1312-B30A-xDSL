@@ -35,9 +35,8 @@ use in reading these.
 ## Configuration
 ```
 <LoadPlugin python> 
-Globals true 
+    Globals true 
 </LoadPlugin> 
-... 
 <Plugin python>
     Import "collectd-plugin-VMG1312-B30A-xDSL"
 
