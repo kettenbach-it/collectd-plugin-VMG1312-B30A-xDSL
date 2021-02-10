@@ -1,4 +1,5 @@
 import re
+import datetime
 
 
 class XdslInfo:
@@ -9,7 +10,8 @@ class XdslInfo:
     vdsl_profile: str
     vdsl_gvector: bool
     vdsl_traffictype: str
-    vdsl_linkuptime: str
+    vdsl_linkuptime_str: str
+    vdsl_linkuptime_timedelta: datetime.timedelta
 
     vdsl_upstream_linerateMbps: float
     vdsl_upstream_netdatarateMbps: float
@@ -85,7 +87,7 @@ class XdslInfo:
         out += "\nVDSL Profile:               " + self.vdsl_profile
         out += "\nG.Vector:                   " + str(self.vdsl_gvector)
         out += "\nTraffic Type:               " + self.vdsl_traffictype
-        out += "\nLink Uptime:                " + self.vdsl_linkuptime
+        out += "\nLink Uptime:                " + str(self.vdsl_linkuptime_timedelta) + " (" + str(self.vdsl_linkuptime_timedelta.total_seconds()) + "s)"
         out += "\n========================================================="
         out += "\nVDSL Port Details           Upstream         Downstream"
         out += "\nLine Rate:                  " + str(self.vdsl_upstream_linerateMbps) \
@@ -157,7 +159,13 @@ class XdslInfo:
         else:
             self.vdsl_gvector = False
         self.vdsl_traffictype = re.search(r"Traffic Type: (.*)\n", input_str).group(1).strip()
-        self.vdsl_linkuptime = re.search(r"Link Uptime: (.*)\n", input_str).group(1).strip()
+        self.vdsl_linkuptime_str = re.search(r"Link Uptime: (.*)\n", input_str).group(1).strip()
+        td = re.search(r"Link Uptime: (.*) day.*: (.*) hour.*: (.*) minute.*\n", input_str)
+        self.vdsl_linkuptime_timedelta = datetime.timedelta(
+            days=int(td.group(1).strip()),
+            hours=int(td.group(2).strip()),
+            minutes=int(td.group(3).strip())
+        )
 
         self.vdsl_upstream_linerateMbps = float(re.search(r"Line Rate: (.*) Mbps (.*) Mbps\n", input_str).group(1))
         self.vdsl_downstream_linerateMbps = float(re.search(r"Line Rate: (.*) Mbps (.*) Mbps\n", input_str).group(2))
