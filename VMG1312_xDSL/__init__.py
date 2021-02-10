@@ -100,11 +100,12 @@ class XdslInfo:
     def __str__(self):
         out = "VDSL Training Status:       " + self.vdsl_trainingstatus
         out += "\nVDSL Mode:                  " + self.vdsl_mode
-        out += "\nVDSL Profile:               " + self.vdsl_profile
-        out += "\nG.Vector:                   " + str(self.vdsl_gvector)
         out += "\nTraffic Type:               " + self.vdsl_traffictype
-        out += "\nLink Uptime:                " + str(self.vdsl_linkuptime_timedelta) + " (" + str(
-            self.vdsl_linkuptime_timedelta.total_seconds()) + "s)"
+        if self.vdsl_trainingstatus == "Showtime":
+            out += "\nVDSL Profile:               " + self.vdsl_profile
+            out += "\nG.Vector:                   " + str(self.vdsl_gvector)
+            out += "\nLink Uptime:                " + str(self.vdsl_linkuptime_timedelta) + " (" + str(
+                self.vdsl_linkuptime_timedelta.total_seconds()) + "s)"
         out += "\n========================================================="
         out += "\nVDSL Port Details           Upstream         Downstream"
         out += "\nLine Rate:                  " + str(self.vdsl_upstream_linerateMbps) \
@@ -127,63 +128,67 @@ class XdslInfo:
                + " dB           " + str(self.vdsl_downstream_totalAttenuationDB) + " dB"
         out += "\nAttainable Net Data Rate:   " + str(self.vdsl_upstream_attainableNetDataRateMbps) \
                + " Mbps      " + str(self.vdsl_downstream_attainableNetDataRateMbps) + " Mbps"
-        out += "\n========================================================="
-        out += "\nVDSL Band Status        U0      U1      U2      U3      U4      D1      D2      D3"
-        out += "\nLine Attenuation(dB):   " + self.xstr(self.vdsl_band_lineattenuationDB_U0) + "     " \
-               + self.xstr(self.vdsl_band_lineattenuationDB_U1) + "    " \
-               + self.xstr(self.vdsl_band_lineattenuationDB_U2) + "    " \
-               + self.xstr(self.vdsl_band_lineattenuationDB_U3) + "    " \
-               + self.xstr(self.vdsl_band_lineattenuationDB_U4) + "    " \
-               + self.xstr(self.vdsl_band_lineattenuationDB_D1) + "    " \
-               + self.xstr(self.vdsl_band_lineattenuationDB_D2) + "    " \
-               + self.xstr(self.vdsl_band_lineattenuationDB_D3) + "    "
-        out += "\nSignal Attenuation(dB): " + self.xstr(self.vdsl_band_signalattenuationDB_U0) + "     " \
-               + self.xstr(self.vdsl_band_signalattenuationDB_U1) + "    " \
-               + self.xstr(self.vdsl_band_signalattenuationDB_U2) + "    " \
-               + self.xstr(self.vdsl_band_signalattenuationDB_U3) + "    " \
-               + self.xstr(self.vdsl_band_signalattenuationDB_U4) + "    " \
-               + self.xstr(self.vdsl_band_signalattenuationDB_D1) + "    " \
-               + self.xstr(self.vdsl_band_signalattenuationDB_D2) + "    " \
-               + self.xstr(self.vdsl_band_signalattenuationDB_D3) + "    "
-        out += "\nSNR Margin(dB):         " + self.xstr(self.vdsl_band_snrMargin_U0) + "     " \
-               + self.xstr(self.vdsl_band_snrMargin_U1) + "      " \
-               + self.xstr(self.vdsl_band_snrMargin_U2) + "     " \
-               + self.xstr(self.vdsl_band_snrMargin_U3) + "     " \
-               + self.xstr(self.vdsl_band_snrMargin_U4) + "    " \
-               + self.xstr(self.vdsl_band_snrMargin_D1) + "    " \
-               + self.xstr(self.vdsl_band_snrMargin_D2) + "    " \
-               + self.xstr(self.vdsl_band_snrMargin_D3) + "    "
-        out += "\nTX Power(dBm):         " + self.xstr(self.vdsl_band_txPower_U0) + "     " \
-               + self.xstr(self.vdsl_band_txPower_U1) + "    " \
-               + self.xstr(self.vdsl_band_txPower_U2) + "    " \
-               + self.xstr(self.vdsl_band_txPower_U3) + "    " \
-               + self.xstr(self.vdsl_band_txPower_U4) + "    " \
-               + self.xstr(self.vdsl_band_txPower_D1) + "    " \
-               + self.xstr(self.vdsl_band_txPower_D2) + "    " \
-               + self.xstr(self.vdsl_band_txPower_D3) + "    "
+        if self.vdsl_trainingstatus == "Showtime":
+            out += "\n========================================================="
+            out += "\nVDSL Band Status        U0      U1      U2      U3      U4      D1      D2      D3"
+            out += "\nLine Attenuation(dB):   " + self.xstr(self.vdsl_band_lineattenuationDB_U0) + "     " \
+                   + self.xstr(self.vdsl_band_lineattenuationDB_U1) + "    " \
+                   + self.xstr(self.vdsl_band_lineattenuationDB_U2) + "    " \
+                   + self.xstr(self.vdsl_band_lineattenuationDB_U3) + "    " \
+                   + self.xstr(self.vdsl_band_lineattenuationDB_U4) + "    " \
+                   + self.xstr(self.vdsl_band_lineattenuationDB_D1) + "    " \
+                   + self.xstr(self.vdsl_band_lineattenuationDB_D2) + "    " \
+                   + self.xstr(self.vdsl_band_lineattenuationDB_D3) + "    "
+            out += "\nSignal Attenuation(dB): " + self.xstr(self.vdsl_band_signalattenuationDB_U0) + "     " \
+                   + self.xstr(self.vdsl_band_signalattenuationDB_U1) + "    " \
+                   + self.xstr(self.vdsl_band_signalattenuationDB_U2) + "    " \
+                   + self.xstr(self.vdsl_band_signalattenuationDB_U3) + "    " \
+                   + self.xstr(self.vdsl_band_signalattenuationDB_U4) + "    " \
+                   + self.xstr(self.vdsl_band_signalattenuationDB_D1) + "    " \
+                   + self.xstr(self.vdsl_band_signalattenuationDB_D2) + "    " \
+                   + self.xstr(self.vdsl_band_signalattenuationDB_D3) + "    "
+            out += "\nSNR Margin(dB):         " + self.xstr(self.vdsl_band_snrMargin_U0) + "     " \
+                   + self.xstr(self.vdsl_band_snrMargin_U1) + "      " \
+                   + self.xstr(self.vdsl_band_snrMargin_U2) + "     " \
+                   + self.xstr(self.vdsl_band_snrMargin_U3) + "     " \
+                   + self.xstr(self.vdsl_band_snrMargin_U4) + "    " \
+                   + self.xstr(self.vdsl_band_snrMargin_D1) + "    " \
+                   + self.xstr(self.vdsl_band_snrMargin_D2) + "    " \
+                   + self.xstr(self.vdsl_band_snrMargin_D3) + "    "
+            out += "\nTX Power(dBm):         " + self.xstr(self.vdsl_band_txPower_U0) + "     " \
+                   + self.xstr(self.vdsl_band_txPower_U1) + "    " \
+                   + self.xstr(self.vdsl_band_txPower_U2) + "    " \
+                   + self.xstr(self.vdsl_band_txPower_U3) + "    " \
+                   + self.xstr(self.vdsl_band_txPower_U4) + "    " \
+                   + self.xstr(self.vdsl_band_txPower_D1) + "    " \
+                   + self.xstr(self.vdsl_band_txPower_D2) + "    " \
+                   + self.xstr(self.vdsl_band_txPower_D3) + "    "
         return out
 
     def parse(self, input_str: str):
         self.raw = input_str
 
         # https://regex101.com/r/ar6kj3/1
-        self.vdsl_trainingstatus = re.search(r"VDSL Training Status: (.*)\n", input_str).group(1).strip()
+        self.vdsl_trainingstatus = re.search(r".DSL Training Status: (.*)\n", input_str).group(1).strip()
         self.vdsl_mode = re.search(r"Mode: (.*)\n", input_str).group(1).strip()
-        self.vdsl_profile = re.search(r"VDSL Profile: (.*)\n", input_str).group(1).strip()
-        gvector = re.search(r"G.Vector: (.*)\n", input_str).group(1).strip()
-        if gvector == "Enable":
-            self.vdsl_gvector = True
+        if self.vdsl_trainingstatus == "Showtime":
+            self.vdsl_profile = re.search(r"VDSL Profile: (.*)\n", input_str).group(1).strip()
+            gvector = re.search(r"G.Vector: (.*)\n", input_str).group(1).strip()
+            if gvector == "Enable":
+                self.vdsl_gvector = True
+            else:
+                self.vdsl_gvector = False
         else:
-            self.vdsl_gvector = False
+            self.vdsl_profile = None
         self.vdsl_traffictype = re.search(r"Traffic Type: (.*)\n", input_str).group(1).strip()
         self.vdsl_linkuptime_str = re.search(r"Link Uptime: (.*)\n", input_str).group(1).strip()
         td = re.search(r"Link Uptime: (.*) day.*: (.*) hour.*: (.*) minute.*\n", input_str)
-        self.vdsl_linkuptime_timedelta = datetime.timedelta(
-            days=int(td.group(1).strip()),
-            hours=int(td.group(2).strip()),
-            minutes=int(td.group(3).strip())
-        )
-
+        if td is not None:
+            self.vdsl_linkuptime_timedelta = datetime.timedelta(
+                days=int(td.group(1).strip()),
+                hours=int(td.group(2).strip()),
+                minutes=int(td.group(3).strip())
+            )
         self.vdsl_upstream_linerateMbps = float(re.search(r"Line Rate: (.*) Mbps (.*) Mbps\n", input_str).group(1))
         self.vdsl_downstream_linerateMbps = float(re.search(r"Line Rate: (.*) Mbps (.*) Mbps\n", input_str).group(2))
         self.vdsl_upstream_netdatarateMbps = float(
@@ -223,81 +228,82 @@ class XdslInfo:
         self.vdsl_downstream_attainableNetDataRateMbps = float(
             re.search(r"Attainable Net Data Rate: (.*) Mbps (.*) Mbps\n", input_str).group(2))
 
-        lineAttenuation = re.search(r"Line Attenuation\(dB\):\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t\n",
-                                    input_str)
-        if lineAttenuation.group(1).strip() != "N/A":
-            self.vdsl_band_lineattenuationDB_U0 = float(lineAttenuation.group(1).strip())
-        if lineAttenuation.group(2).strip() != "N/A":
-            self.vdsl_band_lineattenuationDB_U1 = float(lineAttenuation.group(2).strip())
-        if lineAttenuation.group(3).strip() != "N/A":
-            self.vdsl_band_lineattenuationDB_U2 = float(lineAttenuation.group(3).strip())
-        if lineAttenuation.group(4).strip() != "N/A":
-            self.vdsl_band_lineattenuationDB_U3 = float(lineAttenuation.group(4).strip())
-        if lineAttenuation.group(5).strip() != "N/A":
-            self.vdsl_band_lineattenuationDB_U4 = float(lineAttenuation.group(5).strip())
-        if lineAttenuation.group(6).strip() != "N/A":
-            self.vdsl_band_lineattenuationDB_D1 = float(lineAttenuation.group(6).strip())
-        if lineAttenuation.group(7).strip() != "N/A":
-            self.vdsl_band_lineattenuationDB_D2 = float(lineAttenuation.group(7).strip())
-        if lineAttenuation.group(8).strip() != "N/A":
-            self.vdsl_band_lineattenuationDB_D3 = float(lineAttenuation.group(8).strip())
+        if self.vdsl_trainingstatus == "Showtime":
+            lineAttenuation = re.search(r"Line Attenuation\(dB\):\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t\n",
+                                        input_str)
+            if lineAttenuation.group(1).strip() != "N/A":
+                self.vdsl_band_lineattenuationDB_U0 = float(lineAttenuation.group(1).strip())
+            if lineAttenuation.group(2).strip() != "N/A":
+                self.vdsl_band_lineattenuationDB_U1 = float(lineAttenuation.group(2).strip())
+            if lineAttenuation.group(3).strip() != "N/A":
+                self.vdsl_band_lineattenuationDB_U2 = float(lineAttenuation.group(3).strip())
+            if lineAttenuation.group(4).strip() != "N/A":
+                self.vdsl_band_lineattenuationDB_U3 = float(lineAttenuation.group(4).strip())
+            if lineAttenuation.group(5).strip() != "N/A":
+                self.vdsl_band_lineattenuationDB_U4 = float(lineAttenuation.group(5).strip())
+            if lineAttenuation.group(6).strip() != "N/A":
+                self.vdsl_band_lineattenuationDB_D1 = float(lineAttenuation.group(6).strip())
+            if lineAttenuation.group(7).strip() != "N/A":
+                self.vdsl_band_lineattenuationDB_D2 = float(lineAttenuation.group(7).strip())
+            if lineAttenuation.group(8).strip() != "N/A":
+                self.vdsl_band_lineattenuationDB_D3 = float(lineAttenuation.group(8).strip())
 
-        signalAttenuation = re.search(
-            r"Signal Attenuation\(dB\):\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t\n", input_str)
-        if signalAttenuation.group(1).strip() != "N/A":
-            self.vdsl_band_signalattenuationDB_U0 = float(signalAttenuation.group(1).strip())
-        if signalAttenuation.group(2).strip() != "N/A":
-            self.vdsl_band_signalattenuationDB_U1 = float(signalAttenuation.group(2).strip())
-        if signalAttenuation.group(3).strip() != "N/A":
-            self.vdsl_band_signalattenuationDB_U2 = float(signalAttenuation.group(3).strip())
-        if signalAttenuation.group(4).strip() != "N/A":
-            self.vdsl_band_signalattenuationDB_U3 = float(signalAttenuation.group(4).strip())
-        if signalAttenuation.group(5).strip() != "N/A":
-            self.vdsl_band_signalattenuationDB_U4 = float(signalAttenuation.group(5).strip())
-        if signalAttenuation.group(6).strip() != "N/A":
-            self.vdsl_band_signalattenuationDB_D1 = float(signalAttenuation.group(6).strip())
-        if signalAttenuation.group(7).strip() != "N/A":
-            self.vdsl_band_signalattenuationDB_D2 = float(signalAttenuation.group(7).strip())
-        if signalAttenuation.group(8).strip() != "N/A":
-            self.vdsl_band_signalattenuationDB_D3 = float(signalAttenuation.group(8).strip())
+            signalAttenuation = re.search(
+                r"Signal Attenuation\(dB\):\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t\n", input_str)
+            if signalAttenuation.group(1).strip() != "N/A":
+                self.vdsl_band_signalattenuationDB_U0 = float(signalAttenuation.group(1).strip())
+            if signalAttenuation.group(2).strip() != "N/A":
+                self.vdsl_band_signalattenuationDB_U1 = float(signalAttenuation.group(2).strip())
+            if signalAttenuation.group(3).strip() != "N/A":
+                self.vdsl_band_signalattenuationDB_U2 = float(signalAttenuation.group(3).strip())
+            if signalAttenuation.group(4).strip() != "N/A":
+                self.vdsl_band_signalattenuationDB_U3 = float(signalAttenuation.group(4).strip())
+            if signalAttenuation.group(5).strip() != "N/A":
+                self.vdsl_band_signalattenuationDB_U4 = float(signalAttenuation.group(5).strip())
+            if signalAttenuation.group(6).strip() != "N/A":
+                self.vdsl_band_signalattenuationDB_D1 = float(signalAttenuation.group(6).strip())
+            if signalAttenuation.group(7).strip() != "N/A":
+                self.vdsl_band_signalattenuationDB_D2 = float(signalAttenuation.group(7).strip())
+            if signalAttenuation.group(8).strip() != "N/A":
+                self.vdsl_band_signalattenuationDB_D3 = float(signalAttenuation.group(8).strip())
 
-        snrMargin = re.search(
-            r"SNR Margin\(dB\):\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t\n", input_str)
-        if snrMargin.group(1).strip() != "N/A":
-            self.vdsl_band_snrMargin_U0 = float(snrMargin.group(1).strip())
-        if snrMargin.group(2).strip() != "N/A":
-            self.vdsl_band_snrMargin_U1 = float(snrMargin.group(2).strip())
-        if snrMargin.group(3).strip() != "N/A":
-            self.vdsl_band_snrMargin_U2 = float(snrMargin.group(3).strip())
-        if snrMargin.group(4).strip() != "N/A":
-            self.vdsl_band_snrMargin_U3 = float(snrMargin.group(4).strip())
-        if snrMargin.group(5).strip() != "N/A":
-            self.vdsl_band_snrMargin_U4 = float(snrMargin.group(5).strip())
-        if snrMargin.group(6).strip() != "N/A":
-            self.vdsl_band_snrMargin_D1 = float(snrMargin.group(6).strip())
-        if snrMargin.group(7).strip() != "N/A":
-            self.vdsl_band_snrMargin_D2 = float(snrMargin.group(7).strip())
-        if snrMargin.group(8).strip() != "N/A":
-            self.vdsl_band_snrMargin_D3 = float(snrMargin.group(8).strip())
+            snrMargin = re.search(
+                r"SNR Margin\(dB\):\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t\n", input_str)
+            if snrMargin.group(1).strip() != "N/A":
+                self.vdsl_band_snrMargin_U0 = float(snrMargin.group(1).strip())
+            if snrMargin.group(2).strip() != "N/A":
+                self.vdsl_band_snrMargin_U1 = float(snrMargin.group(2).strip())
+            if snrMargin.group(3).strip() != "N/A":
+                self.vdsl_band_snrMargin_U2 = float(snrMargin.group(3).strip())
+            if snrMargin.group(4).strip() != "N/A":
+                self.vdsl_band_snrMargin_U3 = float(snrMargin.group(4).strip())
+            if snrMargin.group(5).strip() != "N/A":
+                self.vdsl_band_snrMargin_U4 = float(snrMargin.group(5).strip())
+            if snrMargin.group(6).strip() != "N/A":
+                self.vdsl_band_snrMargin_D1 = float(snrMargin.group(6).strip())
+            if snrMargin.group(7).strip() != "N/A":
+                self.vdsl_band_snrMargin_D2 = float(snrMargin.group(7).strip())
+            if snrMargin.group(8).strip() != "N/A":
+                self.vdsl_band_snrMargin_D3 = float(snrMargin.group(8).strip())
 
-        txPower = re.search(
-            r"TX Power\(dBm\):\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t\n", input_str)
-        if txPower.group(1).strip() != "N/A":
-            self.vdsl_band_txPower_U0 = float(txPower.group(1).strip())
-        if txPower.group(2).strip() != "N/A":
-            self.vdsl_band_txPower_U1 = float(txPower.group(2).strip())
-        if txPower.group(3).strip() != "N/A":
-            self.vdsl_band_txPower_U2 = float(txPower.group(3).strip())
-        if txPower.group(4).strip() != "N/A":
-            self.vdsl_band_txPower_U3 = float(txPower.group(4).strip())
-        if txPower.group(5).strip() != "N/A":
-            self.vdsl_band_txPower_U4 = float(txPower.group(5).strip())
-        if txPower.group(6).strip() != "N/A":
-            self.vdsl_band_txPower_D1 = float(txPower.group(6).strip())
-        if txPower.group(7).strip() != "N/A":
-            self.vdsl_band_txPower_D2 = float(txPower.group(7).strip())
-        if txPower.group(8).strip() != "N/A":
-            self.vdsl_band_txPower_D3 = float(txPower.group(8).strip())
+            txPower = re.search(
+                r"TX Power\(dBm\):\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t\n", input_str)
+            if txPower.group(1).strip() != "N/A":
+                self.vdsl_band_txPower_U0 = float(txPower.group(1).strip())
+            if txPower.group(2).strip() != "N/A":
+                self.vdsl_band_txPower_U1 = float(txPower.group(2).strip())
+            if txPower.group(3).strip() != "N/A":
+                self.vdsl_band_txPower_U2 = float(txPower.group(3).strip())
+            if txPower.group(4).strip() != "N/A":
+                self.vdsl_band_txPower_U3 = float(txPower.group(4).strip())
+            if txPower.group(5).strip() != "N/A":
+                self.vdsl_band_txPower_U4 = float(txPower.group(5).strip())
+            if txPower.group(6).strip() != "N/A":
+                self.vdsl_band_txPower_D1 = float(txPower.group(6).strip())
+            if txPower.group(7).strip() != "N/A":
+                self.vdsl_band_txPower_D2 = float(txPower.group(7).strip())
+            if txPower.group(8).strip() != "N/A":
+                self.vdsl_band_txPower_D3 = float(txPower.group(8).strip())
 
 xdslinfo = XdslInfo()
 
@@ -309,7 +315,6 @@ def getXDSLStats(host, user, password):
         'AuthName': user,
         'AuthPassword': password
     })
-
     # Get page with xDSL Stats
     xdslrequest = session.get(host + dslpath)
     # Parse page with BS
