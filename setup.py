@@ -26,7 +26,7 @@ setup(
     ],
     classifiers=[
         "Intended Audience :: System Administrators",
-        "License :: OSI Approved :: GPL c3 License",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Natural Language :: English",
         "Operating System :: POSIX",
         "Programming Language :: Python",
