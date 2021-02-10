@@ -5,8 +5,8 @@ with open('README.md') as f:
 
 setup(
     name='collectd-plugin-VMG1312-xDSL',
-    version='1.0.1',
-    #packages=[''],
+    version='1.0.2',
+    packages=['VMG1312_xDSL'],
     url='https://github.com/kettenbach-it/collectd-plugin-VMG1312-B30A-xDSL',
     license='GPL v3',
     author='Volker Kettenbach',
@@ -23,5 +23,14 @@ setup(
         "lxml==4.6.2",
         "requests"
 
-    ]
+    ],
+    classifiers=[
+        "Intended Audience :: System Administrators",
+        "License :: OSI Approved :: GPL c3 License",
+        "Natural Language :: English",
+        "Operating System :: POSIX",
+        "Programming Language :: Python",
+        "Topic :: System :: Monitoring"
+    ],
+    keywords='Zyxel VMG1312 xDSL collectd'
 )
