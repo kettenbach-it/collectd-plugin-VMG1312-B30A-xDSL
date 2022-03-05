@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
     name='collectd-plugin-VMG1312-xDSL',
-    version='1.0.4',
+    version='1.0.5',
     packages=['VMG1312_xDSL'],
     url='https://github.com/kettenbach-it/collectd-plugin-VMG1312-B30A-xDSL',
     license='GPL v3',
