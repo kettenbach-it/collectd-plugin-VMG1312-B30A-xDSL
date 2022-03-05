@@ -6,7 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/VMG1312_xDSL" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.9 (collectd-plugin-VMG1312-B30A-xDSL)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
