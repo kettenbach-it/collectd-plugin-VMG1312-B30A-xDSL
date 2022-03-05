@@ -209,9 +209,9 @@ class XdslInfo:
         self.vdsl_upstream_actualdelayMS = float(re.search(r"Actual Delay: (.*) ms (.*) ms\n", input_str).group(1))
         self.vdsl_downstream_actualdelayMS = float(re.search(r"Actual Delay: (.*) ms (.*) ms\n", input_str).group(2))
         self.vdsl_upstream_transmitPowerDBm = float(
-            re.search(r"Transmit Power: (.*) dBm (.*) dBm\n", input_str).group(1))
+            re.search(r"Transmit Power: (.*) dBm (.*) dBm\n", input_str).group(1).replace(" ", ""))
         self.vdsl_downstream_transmitPowerDBm = float(
-            re.search(r"Transmit Power: (.*) dBm (.*) dBm\n", input_str).group(2))
+            re.search(r"Transmit Power: (.*) dBm (.*) dBm\n", input_str).group(2).replace(" ", ""))
         self.vdsl_upstream_receivePowerDBm = float(re.search(r"Receive Power: (.*) dBm (.*) dBm\n", input_str).group(1))
         self.vdsl_downstream_receivePowerDBm = float(
             re.search(r"Receive Power: (.*) dBm (.*) dBm\n", input_str).group(2))
